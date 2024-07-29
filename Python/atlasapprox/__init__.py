@@ -102,7 +102,7 @@ class API:
         Returns: A list of organisms.
         """
         if "organisms" not in self.cache:
-            _fetch_organisms(self, measurement_type)
+            _fetch_organisms(self, measurement_type, baseurl)
 
         return self.cache["organisms"]
 
@@ -120,7 +120,7 @@ class API:
         Returns: A list of organs.
         """
         if ("organs" not in self.cache) or (organism not in self.cache["organs"]):
-            _fetch_organs(self, organism)
+            _fetch_organs(self, organism, measurement_type, baseurl)
         return self.cache["organs"][organism]
 
     def celltypes(
@@ -141,7 +141,7 @@ class API:
         Return: A list of cell types.
         """
         if ("celltypes" not in self.cache) or ((measurement_type, organism, organ, include_abundance) not in self.cache["celltypes"]):
-            _fetch_celltypes(self, organism, organ, measurement_type, include_abundance)
+            _fetch_celltypes(self, organism, organ, measurement_type, include_abundance, baseurl)
         return self.cache["celltypes"][(measurement_type, organism, organ, include_abundance)]
 
     def average(

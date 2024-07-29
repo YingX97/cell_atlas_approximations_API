@@ -1,4 +1,7 @@
-def _fetch_organisms(self):
+import requests
+from atlasapprox.exceptions import BadRequestError
+
+def _fetch_organisms(self, measurement_type: str, baseurl):
     """Fetch organisms data"""
     response = requests.get(
         baseurl + "organisms",
@@ -13,7 +16,7 @@ def _fetch_organisms(self):
     else:
         raise BadRequestError(response.json()["message"])
 
-def _fetch_organs(self, organism: str):
+def _fetch_organs(self, organism: str, measurement_type: str, baseurl):
     """Fetch organ data"""
     response = requests.get(
         baseurl + "organs",
@@ -28,7 +31,7 @@ def _fetch_organs(self, organism: str):
     else:
         raise BadRequestError(response.json()["message"])
 
-def _fetch_celltypes(self, organism: str, organ: str, measurement_type: str, include_abundance: bool):
+def _fetch_celltypes(self, organism: str, organ: str, measurement_type: str, include_abundance: bool, baseurl):
     """Fetch cell type data"""
     response = requests.get(
         baseurl + "celltypes",
