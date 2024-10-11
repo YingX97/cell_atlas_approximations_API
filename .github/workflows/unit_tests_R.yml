@@ -21,7 +21,9 @@ jobs:
       # Install R package dependencies
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::testthat
+          extra-packages: |
+            any::testthat
+            any::devtools
           working-directory: ./R/atlasapprox
 
       # Run self-written unit tests
