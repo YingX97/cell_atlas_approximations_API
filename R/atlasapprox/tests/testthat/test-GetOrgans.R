@@ -26,6 +26,7 @@ test_that("GetOrgans returns correct organs for various species", {
   # Some edge cases
   expect_identical(as.character(GetOrgans("f_vesca")), "leaf")
   expect_identical(as.character(GetOrgans("o_sativa")), "root")
+  # instead of this, check if seedling is one of the return.
   expect_setequal(as.character(GetOrgans("z_mays")), "seedling")
   
   
