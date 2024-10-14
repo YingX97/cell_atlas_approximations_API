@@ -361,6 +361,6 @@ GetDataSources <- function() {
     if (response$status != 200) {
         stop(paste("Bad request: server returned", response))
     }
-    result <- httr::content(response)$data_sources
+    result <- httr::content(response)
     return(result)
 }
