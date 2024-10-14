@@ -312,38 +312,43 @@ GetHighestMeasurement <- function(organism, feature, number) {
 
 
 #' GetSimilarFeatures
-#'
+#' 
 #' @param organism The organism you would like to query
 #' @param organ The organ you would like to query
-#' @param feature The feature to check (e.g. gene)
+#' @param feature The feature to find similarities for
 #' @param number The number of similar features to return
 #' @param method The method used for the distance computation.
 #'        Available methods are: "correlation" (default), "cosine",
 #'        "euclidean", "manhattan", "log-euclidean".
 #'
-#' @return An array of features and their distance from the focal feature
+#' @return An dataframe of similar features and their distances from the focal feature
 #'         according to the method chosen.
 #' @export
 #'
-#' @examples GetSimilarFeatures("h_sapiens", "Lung", "PTPRC", 5, "correlation")
-GetHighestMeasurement <- function(organism, organ, feature, number, method) {
-    params <- list(organism = organism,
-                organ = organ,
+#' @examples GetSimilarFeatures("h_sapiens", "lung", "PTPRC", 5, "correlation")
+GetSimilarFeatures <- function(organism, organ, feature, number, method) {
+    params <- list(
+        organism = organism,
+        organ = organ,
 		feature = feature,
 		number = number,
-                method = method)
-    root_uri <- paste(baseurl, 'similar-features', sep="")
+        method = method
+    )
+    root_uri <- paste(baseurl, 'similar_features', sep="")
     uri <- .GetParams(root_uri, params)
+
     response <- httr::GET(uri)
+
     if (response$status != 200) {
         stop(paste("Bad request: server returned", response))
     }
+    
     similar_features <- array(unlist(httr::content(response)$similar_features))
     distances <- array(unlist(httr::content(response)$distances))
 
     # Make data frame
     df <- data.frame(similar_features, distances)
-    colnames(df) <- c("Features", "distances")
+    colnames(df) <- c("Similar features", "distances")
 
     return(df)
 }
