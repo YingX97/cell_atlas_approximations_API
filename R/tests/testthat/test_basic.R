@@ -6,9 +6,11 @@ library(atlasapprox)
 # Shared Variables: Store commonly used data in a fixture.
 setup({
   test_organism <<- "h_sapiens"
-  test_tissue <<- "Lung"
+  test_tissue <<- "lung"
+  test_gene <<- "COL1A1"
   test_genes <<- c("COL1A1", "PTPRC")
   test_celltype <<- "fibroblast"
+  test_number <<- 10
 })
 
 # Clean up the test environment if needed
@@ -63,5 +65,24 @@ test_that("GetCelltypeLocation works", {
   expect_true(length(locations) > 1)
 })
 
-# TODO:
-# add unit test for getDataSource() and getHighestMeasurement() and other functions...
+test_that("GetSimilarFeatures works", {
+  similar_features = GetSimilarFeatures(test_organism, test_tissue, test_gene, test_number, "correlation")
+  expect_true(nrow(similar_features) == test_number, paste("Should have", test_number, "rows"))
+  expect_true(ncol(similar_features) >= 2, "Should have at least 2 columns: features and distance")
+})
+
+test_that("GetDataSources works", {
+
+  datasources <- GetDataSources()
+  expect_false(is.null(datasources))
+  expect_type(datasources, "list")
+  expect_true(length(datasources) > 0)
+
+  # Check for specific expected keys in the list
+  expected_keys <- c("a_queenslandica", "c_elegans", "h_sapiens", "z_mays")
+  for (key in expected_keys) {
+    expect_true(key %in% names(datasources), 
+      info = paste("Expected key", key, "not found in datasources"))
+  }
+
+})
