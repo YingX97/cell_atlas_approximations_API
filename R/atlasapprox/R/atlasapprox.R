@@ -280,7 +280,7 @@ GetCelltypeLocation <- function(organism, cell_type) {
 #' @param feature The feature to check (e.g. gene)
 #' @param number The number of cell types to return
 #'
-#' @return An array of cell types, organs, and averages for the
+#' @return An dataframe of cell types, organs, and averages for the
 #'         cell types with the highest measurement for that feature
 #' @export
 #'
@@ -298,10 +298,6 @@ GetHighestMeasurement <- function(organism, feature, number) {
     cell_types <- array(unlist(httr::content(response)$celltypes))
     organs <- array(unlist(httr::content(response)$organs))
     average <- array(unlist(httr::content(response)$average))
-
-    print(cell_types)
-    print(organs)
-    print(average)
 
     # Make data frame with all three arrays
     df <- data.frame(cell_types, organs, average)
