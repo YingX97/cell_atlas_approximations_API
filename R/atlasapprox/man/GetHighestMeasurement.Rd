@@ -14,7 +14,7 @@ GetHighestMeasurement(organism, feature, number)
 \item{number}{The number of cell types to return}
 }
 \value{
-An array of cell types, organs, and averages for the
+An dataframe of cell types, organs, and averages for the
 cell types with the highest measurement for that feature
 }
 \description{

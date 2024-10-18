@@ -6,6 +6,8 @@ if (baseurl == "") {
     baseurl <- paste('http://api.atlasapprox.org/', api_version, '/', sep="")
 }
 
+#' @importFrom utils URLencode
+NULL
 
 ###########################
 # INTERNALS
