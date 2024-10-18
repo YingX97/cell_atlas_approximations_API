@@ -32,6 +32,7 @@ jobs:
       uses: r-lib/actions/check-r-package@v2
       with:
         error-on: '"note"'
+        working-directory: R/atlasapprox
 
     # - name: Install package
     #   run: R CMD INSTALL R/atlasapprox
