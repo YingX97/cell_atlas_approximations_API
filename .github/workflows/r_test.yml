@@ -33,15 +33,4 @@ jobs:
       with:
         error-on: '"note"'
         working-directory: R/atlasapprox
-
-    # - name: Install package
-    #   run: R CMD INSTALL R/atlasapprox
-
-    # - name: Run test with testthat
-    #   working-directory: R
-    #   run: |
-    #     Rscript -e '
-    #       library(testthat)
-    #       library(atlasapprox)
-    #       test_dir("tests/testthat", reporter = "progress")
-    #     '
+        
