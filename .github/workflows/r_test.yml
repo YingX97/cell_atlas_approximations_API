@@ -21,14 +21,14 @@ jobs:
     - name: Setup Pandoc
       uses: r-lib/actions/setup-pandoc@v2
 
-    - name: Install dependencies
+    - name: Install R dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
       with:
         extra-packages: any::rcmdcheck
         needs: check
         working-directory: R/atlasapprox
 
-    - name: Check r packages
+    - name: Check R packages
       uses: r-lib/actions/check-r-package@v2
       with:
         error-on: '"note"'

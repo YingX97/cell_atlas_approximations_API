@@ -1,6 +1,3 @@
-library(testthat)
-library(atlasapprox)
-
 # Use fixtures to improve the test
 
 # Shared Variables: Store commonly used data in a fixture.
