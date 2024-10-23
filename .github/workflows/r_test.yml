@@ -33,4 +33,14 @@ jobs:
       with:
         error-on: '"note"'
         working-directory: R/atlasapprox
-        
+    
+    - name: Build R package
+      run: |
+        R CMD build .
+      working-directory: R/atlasapprox
+
+    - name: Run R CMD check --as-cran
+      run: |
+        R CMD check --as-cran *.tar.gz
+      working-directory: R
+      shell: bash
