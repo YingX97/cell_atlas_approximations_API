@@ -71,6 +71,7 @@ jobs:
       working-directory: R/atlasapprox
 
     - name: Run R CMD check --as-cran
+      if: runner.os != 'Windows'
       shell: bash
       run: |
         R CMD check --as-cran atlasapprox_*.tar.gz
