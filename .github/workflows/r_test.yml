@@ -25,13 +25,19 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install -y texlive-latex-base 
+        sudo apt-get install -y tidy
+        sudo apt-get install -y texlive-full
 
     - name: Install dependencies (macOS)
       if: runner.os == 'macOS'
       run: |
         brew install tidy-html5
         brew install --cask basictex
+
+    - name: Install TinyTeX (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        R -e "tinytex::install_tinytex()"
 
     - name: Install R dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
