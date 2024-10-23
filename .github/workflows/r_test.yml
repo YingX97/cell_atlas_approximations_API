@@ -21,6 +21,12 @@ jobs:
     - name: Setup Pandoc
       uses: r-lib/actions/setup-pandoc@v2
 
+    - name: Install dependencies (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew install tidy-html5
+        brew install --cask basictex
+
     - name: Install R dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
       with:
