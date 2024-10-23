@@ -38,10 +38,12 @@ jobs:
 
     - name: Install TinyTeX (Windows)
       if: runner.os == 'Windows'
+      shell: cmd
       run: |
         Rscript -e "if (!require('tinytex')) install.packages('tinytex')"
-        Rscript -e "tinytex::install_tinytex(force = TRUE)"
-        Rscript -e "tinytex::tlmgr_install(c('latex-bin', 'inconsolata'))"
+        Rscript -e "tinytex::install_tinytex(force = TRUE, dir = 'C:/tinytex')"
+        Rscript -e "tinytex::tlmgr_install(c('latex-bin', 'inconsolata', 'ae', 'ec', 'grfext', 'hyphen-base', 'tex', 'texinfo'))"
+        echo "C:/tinytex/bin/windows" >> $GITHUB_PATH
 
     - name: Install R dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
