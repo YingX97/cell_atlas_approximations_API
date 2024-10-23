@@ -32,7 +32,9 @@ jobs:
       if: runner.os == 'macOS'
       run: |
         brew install tidy-html5
-        brew install --cask basictex
+        Rscript -e "if (!require('tinytex')) install.packages('tinytex')"
+        Rscript -e "tinytex::install_tinytex(force = TRUE)"
+        Rscript -e "tinytex::tlmgr_install(c('latex-bin', 'inconsolata'))"
 
     - name: Install TinyTeX (Windows)
       if: runner.os == 'Windows'
@@ -40,7 +42,7 @@ jobs:
       run: |
         Rscript -e "install.packages('tinytex')"
         Rscript -e "tinytex::install_tinytex()"
-        
+
     - name: Install R dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
       with:
