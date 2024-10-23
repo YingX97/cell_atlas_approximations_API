@@ -3,9 +3,9 @@ Title: Cell Atlas Approximations
 Version: 0.1.0
 Authors@R: 
     c(
-      person("Fabio", "Zanini", , "fabio.zanini@unsw.edu.au", role = c("aut", "cre"),
+      person("Fabio", "Zanini", , "fabio.zanini@unsw.edu.au", role = "aut",
              comment = c(ORCID = "0000-0001-7097-8539")),
-      person("Ying", "Xu", , "ying.xu3@gmail.com", role = "aut")
+      person("Ying", "Xu", , "ying.xu3@unsw.edu.au", role = c("aut", "cre"))
     )
 Maintainer: Ying Xu <ying.xu3@unsw.edu.au>
 Description: Provides an interface in R to cell atlas approximations. See the vignette under "Getting started" for instructionsFor detailed instructions. You can also explore the reference documentation for specific functions. Additional interfaces and resources are available at <https://atlasapprox.readthedocs.io>.
