@@ -34,13 +34,23 @@ jobs:
         error-on: '"note"'
         working-directory: R/atlasapprox
     
-    - name: Build R package
+    - name: Build package (Windows)
+      if: runner.os == 'Windows'
+      shell: cmd
+      run: |
+        R.exe CMD build .
+      working-directory: R/atlasapprox
+
+    - name: Build R package (other systems)
+      if: runner.os != 'Windows'
+      shell: bash
       run: |
         R CMD build .
       working-directory: R/atlasapprox
 
+
     - name: Run R CMD check --as-cran
+      shell: bash
       run: |
         R CMD check --as-cran *.tar.gz
-      working-directory: R
-      shell: bash
+      working-directory: R/atlasapprox
