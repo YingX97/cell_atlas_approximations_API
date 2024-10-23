@@ -38,10 +38,10 @@ jobs:
 
     - name: Install TinyTeX (Windows)
       if: runner.os == 'Windows'
-      shell: cmd
       run: |
-        Rscript -e "install.packages('tinytex')"
-        Rscript -e "tinytex::install_tinytex()"
+        Rscript -e "if (!require('tinytex')) install.packages('tinytex')"
+        Rscript -e "tinytex::install_tinytex(force = TRUE)"
+        Rscript -e "tinytex::tlmgr_install(c('latex-bin', 'inconsolata'))"
 
     - name: Install R dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
@@ -68,6 +68,7 @@ jobs:
       shell: cmd
       run: |
         R.exe CMD check --as-cran atlasapprox_*.tar.gz
+      working-directory: R/atlasapprox
 
     - name: Build R package (other systems)
       if: runner.os != 'Windows'
