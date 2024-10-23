@@ -36,9 +36,11 @@ jobs:
 
     - name: Install TinyTeX (Windows)
       if: runner.os == 'Windows'
+      shell: cmd
       run: |
-        R -e "tinytex::install_tinytex()"
-
+        Rscript -e "install.packages('tinytex')"
+        Rscript -e "tinytex::install_tinytex()"
+        
     - name: Install R dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
       with:
