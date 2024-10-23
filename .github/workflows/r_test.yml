@@ -60,7 +60,7 @@ jobs:
       if: runner.os == 'Windows'
       shell: cmd
       run: |
-        R.exe CMD check --no-manual --as-cran atlasapprox_*.tar.gz
+        R.exe CMD check --no-manual --as-cran atlasapprox_0.1.0.tar.gz
       working-directory: R/atlasapprox
 
     - name: Build R package (other systems)
