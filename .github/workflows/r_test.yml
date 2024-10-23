@@ -41,6 +41,12 @@ jobs:
         R.exe CMD build .
       working-directory: R/atlasapprox
 
+    - name: Run CRAN check (Windows)
+      if: runner.os == 'Windows'
+      shell: cmd
+      run: |
+        R.exe CMD check --as-cran atlasapprox_*.tar.gz
+
     - name: Build R package (other systems)
       if: runner.os != 'Windows'
       shell: bash
@@ -48,9 +54,8 @@ jobs:
         R CMD build .
       working-directory: R/atlasapprox
 
-
     - name: Run R CMD check --as-cran
       shell: bash
       run: |
-        R CMD check --as-cran *.tar.gz
+        R CMD check --as-cran atlasapprox_*.tar.gz
       working-directory: R/atlasapprox
